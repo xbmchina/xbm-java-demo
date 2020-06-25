@@ -1,0 +1,11 @@
+cn\xbmchina\config\MessageEvent.class
+cn\xbmchina\controller\ProducerController$1.class
+cn\xbmchina\config\RocketMQConfiguration.class
+cn\xbmchina\config\RocketMQProperties.class
+cn\xbmchina\controller\ProducerController.class
+cn\xbmchina\config\RocketMQConfiguration$1.class
+cn\xbmchina\config\RocketMQConfiguration$2.class
+cn\xbmchina\entity\User.class
+cn\xbmchina\RocketmqDemoApplication.class
+cn\xbmchina\config\RocketMQConfiguration$3.class
+cn\xbmchina\service\ConsumerService.class

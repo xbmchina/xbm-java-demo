@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TradeMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.model.Trade">
+    <id column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="channel_seller_id" jdbcType="BIGINT" property="channelSellerId" />
+    <result column="channel_seller_manage_id" jdbcType="BIGINT" property="channelSellerManageId" />
+    <result column="shop_buyer_id" jdbcType="BIGINT" property="shopBuyerId" />
+    <result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick" />
+    <result column="received_payment" jdbcType="DECIMAL" property="receivedPayment" />
+    <result column="post_fee" jdbcType="DECIMAL" property="postFee" />
+    <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+    <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="receiver_zip" jdbcType="VARCHAR" property="receiverZip" />
+    <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+    <result column="receiver_mobile_type" jdbcType="TINYINT" property="receiverMobileType" />
+    <result column="tid" jdbcType="VARCHAR" property="tid" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="seller_flag" jdbcType="TINYINT" property="sellerFlag" />
+    <result column="seller_memo" jdbcType="VARCHAR" property="sellerMemo" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="order_state" jdbcType="VARCHAR" property="orderState" />
+    <result column="channel_state" jdbcType="TINYINT" property="channelState" />
+    <result column="trade_from" jdbcType="VARCHAR" property="tradeFrom" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="step_trade_status" jdbcType="VARCHAR" property="stepTradeStatus" />
+    <result column="step_paid_fee" jdbcType="VARCHAR" property="stepPaidFee" />
+    <result column="buyer_alipay_no" jdbcType="VARCHAR" property="buyerAlipayNo" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="discount_fee" jdbcType="DECIMAL" property="discountFee" />
+    <result column="total_fee" jdbcType="DECIMAL" property="totalFee" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="modified" jdbcType="TIMESTAMP" property="modified" />
+    <result column="consign_time" jdbcType="TIMESTAMP" property="consignTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="shipping_type" jdbcType="VARCHAR" property="shippingType" />
+    <result column="shipping_name" jdbcType="VARCHAR" property="shippingName" />
+    <result column="shipping_sid" jdbcType="VARCHAR" property="shippingSid" />
+    <result column="shipping_status" jdbcType="TINYINT" property="shippingStatus" />
+    <result column="shipping_modified" jdbcType="TIMESTAMP" property="shippingModified" />
+    <result column="last_shipping_update_time" jdbcType="TIMESTAMP" property="lastShippingUpdateTime" />
+    <result column="rx_audit_status" jdbcType="TINYINT" property="rxAuditStatus" />
+    <result column="last_send_time" jdbcType="TIMESTAMP" property="lastSendTime" />
+    <result column="platform" jdbcType="TINYINT" property="platform" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.model.Trade">
+    <result column="buyer_message" jdbcType="LONGVARCHAR" property="buyerMessage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trade_id, channel_seller_id, channel_seller_manage_id, shop_buyer_id, buyer_nick, 
+    received_payment, post_fee, receiver_name, receiver_address, receiver_zip, receiver_mobile, 
+    receiver_mobile_type, tid, num, seller_flag, seller_memo, status, order_state, channel_state, 
+    trade_from, type, step_trade_status, step_paid_fee, buyer_alipay_no, price, discount_fee, 
+    total_fee, created, pay_time, modified, consign_time, end_time, shipping_type, shipping_name, 
+    shipping_sid, shipping_status, shipping_modified, last_shipping_update_time, rx_audit_status, 
+    last_send_time, platform
+  </sql>
+  <sql id="Blob_Column_List">
+    buyer_message
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from trade_000002
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade_000002
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.model.Trade">
+    insert into trade_000002 (trade_id, channel_seller_id, channel_seller_manage_id, 
+      shop_buyer_id, buyer_nick, received_payment, 
+      post_fee, receiver_name, receiver_address, 
+      receiver_zip, receiver_mobile, receiver_mobile_type, 
+      tid, num, seller_flag, 
+      seller_memo, status, order_state, 
+      channel_state, trade_from, type, 
+      step_trade_status, step_paid_fee, buyer_alipay_no, 
+      price, discount_fee, total_fee, 
+      created, pay_time, modified, 
+      consign_time, end_time, shipping_type, 
+      shipping_name, shipping_sid, shipping_status, 
+      shipping_modified, last_shipping_update_time, 
+      rx_audit_status, last_send_time, platform, 
+      buyer_message)
+    values (#{tradeId,jdbcType=BIGINT}, #{channelSellerId,jdbcType=BIGINT}, #{channelSellerManageId,jdbcType=BIGINT}, 
+      #{shopBuyerId,jdbcType=BIGINT}, #{buyerNick,jdbcType=VARCHAR}, #{receivedPayment,jdbcType=DECIMAL}, 
+      #{postFee,jdbcType=DECIMAL}, #{receiverName,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverZip,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverMobileType,jdbcType=TINYINT}, 
+      #{tid,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{sellerFlag,jdbcType=TINYINT}, 
+      #{sellerMemo,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{orderState,jdbcType=VARCHAR}, 
+      #{channelState,jdbcType=TINYINT}, #{tradeFrom,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{stepTradeStatus,jdbcType=VARCHAR}, #{stepPaidFee,jdbcType=VARCHAR}, #{buyerAlipayNo,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{discountFee,jdbcType=DECIMAL}, #{totalFee,jdbcType=DECIMAL}, 
+      #{created,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{modified,jdbcType=TIMESTAMP}, 
+      #{consignTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{shippingType,jdbcType=VARCHAR}, 
+      #{shippingName,jdbcType=VARCHAR}, #{shippingSid,jdbcType=VARCHAR}, #{shippingStatus,jdbcType=TINYINT}, 
+      #{shippingModified,jdbcType=TIMESTAMP}, #{lastShippingUpdateTime,jdbcType=TIMESTAMP}, 
+      #{rxAuditStatus,jdbcType=TINYINT}, #{lastSendTime,jdbcType=TIMESTAMP}, #{platform,jdbcType=TINYINT}, 
+      #{buyerMessage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.model.Trade">
+    insert into trade_000002
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="channelSellerId != null">
+        channel_seller_id,
+      </if>
+      <if test="channelSellerManageId != null">
+        channel_seller_manage_id,
+      </if>
+      <if test="shopBuyerId != null">
+        shop_buyer_id,
+      </if>
+      <if test="buyerNick != null">
+        buyer_nick,
+      </if>
+      <if test="receivedPayment != null">
+        received_payment,
+      </if>
+      <if test="postFee != null">
+        post_fee,
+      </if>
+      <if test="receiverName != null">
+        receiver_name,
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address,
+      </if>
+      <if test="receiverZip != null">
+        receiver_zip,
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile,
+      </if>
+      <if test="receiverMobileType != null">
+        receiver_mobile_type,
+      </if>
+      <if test="tid != null">
+        tid,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="sellerFlag != null">
+        seller_flag,
+      </if>
+      <if test="sellerMemo != null">
+        seller_memo,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="channelState != null">
+        channel_state,
+      </if>
+      <if test="tradeFrom != null">
+        trade_from,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="stepTradeStatus != null">
+        step_trade_status,
+      </if>
+      <if test="stepPaidFee != null">
+        step_paid_fee,
+      </if>
+      <if test="buyerAlipayNo != null">
+        buyer_alipay_no,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="discountFee != null">
+        discount_fee,
+      </if>
+      <if test="totalFee != null">
+        total_fee,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="modified != null">
+        modified,
+      </if>
+      <if test="consignTime != null">
+        consign_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="shippingType != null">
+        shipping_type,
+      </if>
+      <if test="shippingName != null">
+        shipping_name,
+      </if>
+      <if test="shippingSid != null">
+        shipping_sid,
+      </if>
+      <if test="shippingStatus != null">
+        shipping_status,
+      </if>
+      <if test="shippingModified != null">
+        shipping_modified,
+      </if>
+      <if test="lastShippingUpdateTime != null">
+        last_shipping_update_time,
+      </if>
+      <if test="rxAuditStatus != null">
+        rx_audit_status,
+      </if>
+      <if test="lastSendTime != null">
+        last_send_time,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+      <if test="buyerMessage != null">
+        buyer_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=BIGINT},
+      </if>
+      <if test="channelSellerId != null">
+        #{channelSellerId,jdbcType=BIGINT},
+      </if>
+      <if test="channelSellerManageId != null">
+        #{channelSellerManageId,jdbcType=BIGINT},
+      </if>
+      <if test="shopBuyerId != null">
+        #{shopBuyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNick != null">
+        #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedPayment != null">
+        #{receivedPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="postFee != null">
+        #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverName != null">
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null">
+        #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null">
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobileType != null">
+        #{receiverMobileType,jdbcType=TINYINT},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="sellerFlag != null">
+        #{sellerFlag,jdbcType=TINYINT},
+      </if>
+      <if test="sellerMemo != null">
+        #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="channelState != null">
+        #{channelState,jdbcType=TINYINT},
+      </if>
+      <if test="tradeFrom != null">
+        #{tradeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTradeStatus != null">
+        #{stepTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="stepPaidFee != null">
+        #{stepPaidFee,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAlipayNo != null">
+        #{buyerAlipayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null">
+        #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null">
+        #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consignTime != null">
+        #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingType != null">
+        #{shippingType,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingName != null">
+        #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingSid != null">
+        #{shippingSid,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null">
+        #{shippingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="shippingModified != null">
+        #{shippingModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastShippingUpdateTime != null">
+        #{lastShippingUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rxAuditStatus != null">
+        #{rxAuditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="lastSendTime != null">
+        #{lastSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="buyerMessage != null">
+        #{buyerMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.model.Trade">
+    update trade_000002
+    <set>
+      <if test="channelSellerId != null">
+        channel_seller_id = #{channelSellerId,jdbcType=BIGINT},
+      </if>
+      <if test="channelSellerManageId != null">
+        channel_seller_manage_id = #{channelSellerManageId,jdbcType=BIGINT},
+      </if>
+      <if test="shopBuyerId != null">
+        shop_buyer_id = #{shopBuyerId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNick != null">
+        buyer_nick = #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="receivedPayment != null">
+        received_payment = #{receivedPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="postFee != null">
+        post_fee = #{postFee,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverName != null">
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null">
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZip != null">
+        receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null">
+        receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobileType != null">
+        receiver_mobile_type = #{receiverMobileType,jdbcType=TINYINT},
+      </if>
+      <if test="tid != null">
+        tid = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="sellerFlag != null">
+        seller_flag = #{sellerFlag,jdbcType=TINYINT},
+      </if>
+      <if test="sellerMemo != null">
+        seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="channelState != null">
+        channel_state = #{channelState,jdbcType=TINYINT},
+      </if>
+      <if test="tradeFrom != null">
+        trade_from = #{tradeFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="stepTradeStatus != null">
+        step_trade_status = #{stepTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="stepPaidFee != null">
+        step_paid_fee = #{stepPaidFee,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAlipayNo != null">
+        buyer_alipay_no = #{buyerAlipayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="discountFee != null">
+        discount_fee = #{discountFee,jdbcType=DECIMAL},
+      </if>
+      <if test="totalFee != null">
+        total_fee = #{totalFee,jdbcType=DECIMAL},
+      </if>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modified != null">
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consignTime != null">
+        consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingType != null">
+        shipping_type = #{shippingType,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingName != null">
+        shipping_name = #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingSid != null">
+        shipping_sid = #{shippingSid,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingStatus != null">
+        shipping_status = #{shippingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="shippingModified != null">
+        shipping_modified = #{shippingModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastShippingUpdateTime != null">
+        last_shipping_update_time = #{lastShippingUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rxAuditStatus != null">
+        rx_audit_status = #{rxAuditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="lastSendTime != null">
+        last_send_time = #{lastSendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=TINYINT},
+      </if>
+      <if test="buyerMessage != null">
+        buyer_message = #{buyerMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.model.Trade">
+    update trade_000002
+    set channel_seller_id = #{channelSellerId,jdbcType=BIGINT},
+      channel_seller_manage_id = #{channelSellerManageId,jdbcType=BIGINT},
+      shop_buyer_id = #{shopBuyerId,jdbcType=BIGINT},
+      buyer_nick = #{buyerNick,jdbcType=VARCHAR},
+      received_payment = #{receivedPayment,jdbcType=DECIMAL},
+      post_fee = #{postFee,jdbcType=DECIMAL},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_mobile_type = #{receiverMobileType,jdbcType=TINYINT},
+      tid = #{tid,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      seller_flag = #{sellerFlag,jdbcType=TINYINT},
+      seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      channel_state = #{channelState,jdbcType=TINYINT},
+      trade_from = #{tradeFrom,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      step_trade_status = #{stepTradeStatus,jdbcType=VARCHAR},
+      step_paid_fee = #{stepPaidFee,jdbcType=VARCHAR},
+      buyer_alipay_no = #{buyerAlipayNo,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      discount_fee = #{discountFee,jdbcType=DECIMAL},
+      total_fee = #{totalFee,jdbcType=DECIMAL},
+      created = #{created,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      shipping_type = #{shippingType,jdbcType=VARCHAR},
+      shipping_name = #{shippingName,jdbcType=VARCHAR},
+      shipping_sid = #{shippingSid,jdbcType=VARCHAR},
+      shipping_status = #{shippingStatus,jdbcType=TINYINT},
+      shipping_modified = #{shippingModified,jdbcType=TIMESTAMP},
+      last_shipping_update_time = #{lastShippingUpdateTime,jdbcType=TIMESTAMP},
+      rx_audit_status = #{rxAuditStatus,jdbcType=TINYINT},
+      last_send_time = #{lastSendTime,jdbcType=TIMESTAMP},
+      platform = #{platform,jdbcType=TINYINT},
+      buyer_message = #{buyerMessage,jdbcType=LONGVARCHAR}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.model.Trade">
+    update trade_000002
+    set channel_seller_id = #{channelSellerId,jdbcType=BIGINT},
+      channel_seller_manage_id = #{channelSellerManageId,jdbcType=BIGINT},
+      shop_buyer_id = #{shopBuyerId,jdbcType=BIGINT},
+      buyer_nick = #{buyerNick,jdbcType=VARCHAR},
+      received_payment = #{receivedPayment,jdbcType=DECIMAL},
+      post_fee = #{postFee,jdbcType=DECIMAL},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_mobile_type = #{receiverMobileType,jdbcType=TINYINT},
+      tid = #{tid,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      seller_flag = #{sellerFlag,jdbcType=TINYINT},
+      seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      channel_state = #{channelState,jdbcType=TINYINT},
+      trade_from = #{tradeFrom,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      step_trade_status = #{stepTradeStatus,jdbcType=VARCHAR},
+      step_paid_fee = #{stepPaidFee,jdbcType=VARCHAR},
+      buyer_alipay_no = #{buyerAlipayNo,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      discount_fee = #{discountFee,jdbcType=DECIMAL},
+      total_fee = #{totalFee,jdbcType=DECIMAL},
+      created = #{created,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      modified = #{modified,jdbcType=TIMESTAMP},
+      consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      shipping_type = #{shippingType,jdbcType=VARCHAR},
+      shipping_name = #{shippingName,jdbcType=VARCHAR},
+      shipping_sid = #{shippingSid,jdbcType=VARCHAR},
+      shipping_status = #{shippingStatus,jdbcType=TINYINT},
+      shipping_modified = #{shippingModified,jdbcType=TIMESTAMP},
+      last_shipping_update_time = #{lastShippingUpdateTime,jdbcType=TIMESTAMP},
+      rx_audit_status = #{rxAuditStatus,jdbcType=TINYINT},
+      last_send_time = #{lastSendTime,jdbcType=TIMESTAMP},
+      platform = #{platform,jdbcType=TINYINT}
+    where trade_id = #{tradeId,jdbcType=BIGINT}
+  </update>
+</mapper>
